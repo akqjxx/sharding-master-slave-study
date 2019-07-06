@@ -1,0 +1,33 @@
+server:
+  port: 8082
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  shardingsphere:
+    masterslave:
+      name: ms
+      master-data-source-name: master
+      slave-data-source-names: slave0,slave1
+    props:
+      sql:
+        show: true
+    datasource:
+      names: master,slave0,slave1
+      master:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://192.168.2.120:3360/master?characterEncoding=utf-8
+        password: root
+        type: com.zaxxer.hikari.HikariDataSource
+        username: root
+      slave0:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://192.168.2.120:3360/slave0?characterEncoding=utf-8
+        password: root
+        type: com.zaxxer.hikari.HikariDataSource
+        username: root
+      slave1:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://192.168.2.120:3360/slave1?characterEncoding=utf-8
+        password: root
+        type: com.zaxxer.hikari.HikariDataSource
+        username: root
