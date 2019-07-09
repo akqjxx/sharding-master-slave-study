@@ -4,6 +4,16 @@ spring:
   main:
     allow-bean-definition-overriding: true
   shardingsphere:
+    sharding:
+      tables:
+        user:
+          actual-data-nodes: master.user
+          key-generator:
+            column: id
+            type: SNOWFLAKE
+            props:
+              worker:
+                id: 123456
     masterslave:
       name: ms
       master-data-source-name: master
